@@ -10,10 +10,10 @@ durham_bg <- block_groups(state="37", county = "063",
                           cb = TRUE, year = 2019) %>%
   st_transform("WGS84") %>%
   mutate(GEOIDShort=str_sub(GEOID, 6))
-durham_b <- blocks(state="37", county = "063",
-                          year = 2019) %>%
-  st_transform("WGS84") %>%
-  mutate(GEOIDShort=str_sub(GEOID10, 6))
+# durham_b <- blocks(state="37", county = "063",
+#                           year = 2019) %>%
+#   st_transform("WGS84") %>%
+#   mutate(GEOIDShort=str_sub(GEOID10, 6))
 
 # library(tidycensus)
 # v18 <- load_variables(year=2018, dataset="acs5", cache=TRUE)
@@ -29,16 +29,16 @@ map_durh <- leaflet() %>%
   addPolygons(data = durhamprecinct, 
               group = "Precinct", 
               popup = ~prec_id,
-              color=colors[1],
+              color=colors[2],
               fillOpacity = 0,
-              weight=3
+              weight=6
               ) %>%
   addPolygons(data = durham_bg, 
               group = "Block Group",
-              color=colors[2],
+              color=colors[1],
               popup=~GEOIDShort,
               fillOpacity = 0,
-              weight=3) %>%
+              weight=2) %>%
   # addPolygons(data = durham_b, 
   #             group = "Block",
   #             color=colors[3],
